@@ -9,6 +9,34 @@
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (robot) ->
+  #robot.respond /sendto ([^ ]*) ((?:.*\s*)*)/i, (msg) ->
+  #  robot.messageRoom msg.match[1], "#{msg.match[2]}"
+
+  robot.hear /つー/i, (msg) ->
+    msg.send "かー"
+
+  robot.hear /ぬるぽ/i, (msg) ->
+    msg.send msg.random ["ガッ",
+                         '''
+                         ```
+                         　　 （　・∀・）　　　|　|　ｶﾞｯ
+                         　　と　　　　）　 　 |　|
+                         　　　 Ｙ　/ノ　　　 人
+                         　　　　 /　）　 　 < 　>__Λ∩
+                         　　 ＿/し'　／／. Ｖ｀Д´）/ ←>>1
+                         　　（＿フ彡　　　　　 　　/
+                         ```
+                         ''']
+
+  robot.respond /I am (.*)/i, (msg) ->
+    msg.send "Hi, #{msg.match[1]}"
+
+  robot.respond /おみくじ/i, (msg) ->
+    msg.send msg.random ["大吉", "中吉", "小吉", "凶"]
+
+  robot.respond /(shorten|numeronym) ([^ ]*)/i, (msg) ->
+    s = msg.match[2]
+    msg.send s[0] + s[1...-1].length.toString() + s[-1...]
 
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
